@@ -1,12 +1,15 @@
 FROM python:3.11
 
-ENV PYTHONUNBUFFERED 1
+WORKDIR /College-ERP
 
-WORKDIR /College-ERP-Dep
-
+# Copy the requirements.txt file into the container
 COPY requirements.txt /app/
-RUN pip install -r requirements.txt
 
-COPY . /College-ERP-Dep/
+# Install the dependencies
+RUN pip install -r /app/requirements.txt
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "college_management_system.wsgi:application"]
+# Copy the rest of the application code
+COPY . /College-ERP/
+
+# Command to run your app
+CMD ["python3", "manage.py", "runserver"]
