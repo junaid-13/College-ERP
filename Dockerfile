@@ -12,4 +12,4 @@ RUN pip install -r /app/requirements.txt
 COPY . /College-ERP/
 
 # Command to run your app
-CMD ["python3", "manage.py", "runserver"]
+CMD ["python3", "manage.py", "runserver","0.0.0.0:8001"]
